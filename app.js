@@ -7,20 +7,17 @@ const util = require('util');
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
+require('dotenv').config();
 
-const logFile = fs.createWriteStream(__dirname + '/debug.log', { flags: 'w' });
-const logStdout = process.stdout;
-
-console.log = function(d) {
-    logFile.write(util.format(d) + '\n');
-    logStdout.write(util.format(d) + '\n');
-};
+// Read environment variables from .env file
+const mainUrl = process.env.MAIN_URL;
 
 io.on('connection', (socket) => {
     socket.on('sendToken', (token) => {
         console.log(token);
         if (token === "Hash1") {
             socket.emit("receiveResponse", token + " received");
+            console.log('Data Received' + token);
         }
      
     });
