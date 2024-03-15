@@ -11,7 +11,7 @@ RUN apk update && \
     apk upgrade && \
     apk add --no-cache \
     udev
-
+ENV NODE_ENV="development"
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
 RUN npm install
