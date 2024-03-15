@@ -18,6 +18,7 @@ io.on('connection', (socket) => {
         if (token === "Hash1") {
             socket.emit("receiveResponse", token + " received");
             console.log('Data Received' + token);
+            console.log(' MainURL' + mainUrl); 
         }
      
     });
